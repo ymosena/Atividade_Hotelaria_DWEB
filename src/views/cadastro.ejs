@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cadastro de Funcionários</title>
+</head>
+<body>
+  <h1>Cadastro de Funcionários</h1>
+  <form action="/cadastro" method="POST">
+    <label for="codigo">Código:</label>
+    <input type="number" name="codigo" id="codigo" required><br>
+
+    <label for="horasTrabalhadas">Horas Trabalhadas:</label>
+    <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" required><br>
+
+    <label for="categoria">Categoria:</label>
+    <select name="categoria" id="categoria">
+      <% categorias.forEach(function(categoria) { %>
+        <option value="<%= categoria %>"><%= categoria %></option>
+      <% }) %>
+    </select><br>
+
+    <label for="turno">Turno:</label>
+    <% if (categoria === 'gerente') { %>
+      <select name="turno" id="turno">
+        <option value="vespertino">Vespertino</option>
+        <option value="matutino">Matutino</option>
+      </select>
+    <% } else { %>
+      <select name="turno" id="turno">
+        <option value="noturno">Noturno</option>
+        <option value="vespertino">Vespertino</option>
+        <option value="matutino">Matutino</option>
+      </select>
+    <% } %><br>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+</body>
+</html>
