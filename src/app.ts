@@ -7,9 +7,9 @@ const app = express();
 app.use(BodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 app.use(router);
 
 app.listen(3000, () => {
   console.log("Ouvindo a porta 3000");
 });
-

@@ -34,6 +34,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.4",
+    "sequelize-cli": "^6.6.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.2"
   },
@@ -41,11 +42,11 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "handlebars": "^4.7.7",
-    "sequelize": "^6.32.0",
-    "sequelize-cli": "^6.6.1",
     "joi": "^17.8.4",
+    "mysql2": "^3.3.3",
     "node": "^19.8.1",
     "package.json": "^2.0.1",
+    "sequelize": "^6.32.0",
     "ts-node": "^10.9.1"
   }
 }

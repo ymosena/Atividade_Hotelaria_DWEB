@@ -1,30 +1,24 @@
 import { DataTypes } from "sequelize";
 import database from "./db";
 
-const Funcionario = database.define("funcionario", {
+const SalarioMinimo = database.define("salarioMinimo", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  horasTrabalhadas: {
-    type: DataTypes.INTEGER,
-  },
-  turnoTrabalho: {
-    type: DataTypes.STRING,
-  },
-  categoria: {
-    type: DataTypes.STRING,
-  },
+  salarioMinimo: {
+    type: DataTypes.DOUBLE,
+  }
 });
 
 (async () => {
   try {
-    await Funcionario.sync({ force: true });
+    await SalarioMinimo.sync({ force: true });
     console.log("Tabela criada com sucesso.");
   } catch (erro) {
     console.log("Erro ao criar tabela:", erro);
   }
 })();
 
-export default Funcionario;
+export default SalarioMinimo;
