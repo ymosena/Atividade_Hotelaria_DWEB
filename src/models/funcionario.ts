@@ -8,7 +8,7 @@ const Funcionario = database.define("funcionario", {
     primaryKey: true,
   },
   nomeFuncioario: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   horasTrabalhadas: {
     type: DataTypes.INTEGER,

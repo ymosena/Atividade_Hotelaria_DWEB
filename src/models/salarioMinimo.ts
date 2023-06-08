@@ -9,7 +9,7 @@ const SalarioMinimo = database.define("salarioMinimo", {
   },
   salarioMinimo: {
     type: DataTypes.DOUBLE,
-  }
+  },
 });
 
 (async () => {
