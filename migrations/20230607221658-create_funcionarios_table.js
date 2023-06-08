@@ -9,6 +9,9 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      nomeFuncioario: {
+        type: Sequelize.STRING
+      },
       horasTrabalhadas: {
         type: Sequelize.INTEGER
       },

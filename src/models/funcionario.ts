@@ -7,6 +7,9 @@ const Funcionario = database.define("funcionario", {
     autoIncrement: true,
     primaryKey: true,
   },
+  nomeFuncioario: {
+    type: DataTypes.STRING
+  },
   horasTrabalhadas: {
     type: DataTypes.INTEGER,
   },

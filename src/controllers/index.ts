@@ -1,0 +1,1 @@
+export { default as controlletfuncionario } from "./controlefuncionario"
