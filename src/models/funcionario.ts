@@ -1,33 +1,42 @@
-import { DataTypes } from "sequelize";
-import database from "./db";
+import { Model, DataTypes } from 'sequelize';
+import database from '../models/db';
 
-const Funcionario = database.define("funcionario", {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  nomeFuncioario: {
-    type: DataTypes.STRING,
-  },
-  horasTrabalhadas: {
-    type: DataTypes.INTEGER,
-  },
-  turnoTrabalho: {
-    type: DataTypes.STRING,
-  },
-  categoria: {
-    type: DataTypes.STRING,
-  },
-});
+class Funcionario extends Model {
+  public id!: number;
+  public nomeFuncionario!: string;
+  public horasTrabalhadas!: number;
+  public turnoTrabalho!: string;
+  public categoria!: string;
+}
 
-(async () => {
-  try {
-    await Funcionario.sync({ force: true });
-    console.log("Tabela criada com sucesso.");
-  } catch (erro) {
-    console.log("Erro ao criar tabela:", erro);
+Funcionario.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    nomeFuncionario: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    horasTrabalhadas: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    turnoTrabalho: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    categoria: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize: database,
+    modelName: 'Funcionario',
   }
-})();
+);
 
 export default Funcionario;
