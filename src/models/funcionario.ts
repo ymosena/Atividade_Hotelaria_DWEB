@@ -35,8 +35,15 @@ Funcionario.init(
   },
   {
     sequelize: database,
-    modelName: 'Funcionario',
+    modelName: 'Funcionarios',
   }
 );
+
+try {
+  Funcionario.sync({ force: true })
+  console.log("Tabela Criada Com sucesso")
+} catch (error) {
+  console.log("Erro ao cirar Tabela: ", error)
+}
 
 export default Funcionario;

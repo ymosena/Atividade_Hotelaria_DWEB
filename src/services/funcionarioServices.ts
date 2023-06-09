@@ -42,6 +42,8 @@ class FuncionarioServices {
   }
 
   async put(data: any, id: number) {
+    await database.sync();
+
     const funcionario = await this.getPorId(id);
     if (funcionario) {
       funcionario.nomeFuncionario = data.nomeFuncionario;
@@ -55,6 +57,7 @@ class FuncionarioServices {
   }
 
   async delete(id: number) {
+    await database.sync();
     const funcionario = await this.getPorId(id);
     funcionario?.destroy();
   }

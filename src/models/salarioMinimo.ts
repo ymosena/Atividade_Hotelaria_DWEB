@@ -20,8 +20,15 @@ SalarioMinimo.init(
   },
   {
     sequelize: database,
-    modelName: 'SalarioMinimo',
+    modelName: 'SalarioMinimos',
   }
 );
+
+try {
+  SalarioMinimo.sync({ force: true })
+  console.log("Tabela Criada Com sucesso")
+} catch (error) {
+  console.log("Erro ao cirar Tabela: ", error)
+}
 
 export default SalarioMinimo;
