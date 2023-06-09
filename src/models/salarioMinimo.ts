@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import database from '../models/db';
+import { Model, DataTypes } from "sequelize";
+import database from "../models/db";
 
 class SalarioMinimo extends Model {
   public id!: number;
@@ -20,15 +20,15 @@ SalarioMinimo.init(
   },
   {
     sequelize: database,
-    modelName: 'SalarioMinimos',
+    modelName: "SalarioMinimos",
   }
 );
 
 try {
-  SalarioMinimo.sync({ force: true })
-  console.log("Tabela Criada Com sucesso")
+  SalarioMinimo.sync({ force: true });
+  console.log("Tabela Criada Com sucesso");
 } catch (error) {
-  console.log("Erro ao cirar Tabela: ", error)
+  console.log("Erro ao cirar Tabela: ", error);
 }
 
 export default SalarioMinimo;

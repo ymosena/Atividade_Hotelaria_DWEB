@@ -1,5 +1,5 @@
-import { Model, DataTypes } from 'sequelize';
-import database from '../models/db';
+import { Model, DataTypes } from "sequelize";
+import database from "../models/db";
 
 class Funcionario extends Model {
   public id!: number;
@@ -35,15 +35,15 @@ Funcionario.init(
   },
   {
     sequelize: database,
-    modelName: 'Funcionarios',
+    modelName: "Funcionarios",
   }
 );
 
 try {
-  Funcionario.sync({ force: true })
-  console.log("Tabela Criada Com sucesso")
+  Funcionario.sync({ force: true });
+  console.log("Tabela Criada Com sucesso");
 } catch (error) {
-  console.log("Erro ao cirar Tabela: ", error)
+  console.log("Erro ao cirar Tabela: ", error);
 }
 
 export default Funcionario;
