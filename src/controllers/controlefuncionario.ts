@@ -11,19 +11,19 @@ class Funcionario {
   async getPorId(req: Request, res: Response) {
     const { id } = req.params;
     const funcionario = await funcionarioServices.getPorId(parseInt(id));
-    return res.json(funcionario);
+    return res.json( { data: funcionario });
   }
 
   async getPorNome(req: Request, res: Response) {
     const { nome } = req.params;
     const funcionario = await funcionarioServices.getPorNome(nome);
-    return res.json(funcionario);
+    return res.json( { data: funcionario });
   }
 
   async post(req: Request, res: Response) {
     const data = req.body;
     const novoFuncionario = await funcionarioServices.post(data);
-    return res.json(novoFuncionario);
+    return res.json( { data: novoFuncionario });
   }
 
   async put(req: Request, res: Response) {
@@ -33,7 +33,7 @@ class Funcionario {
       data,
       parseInt(id)
     );
-    return res.json(alteracaoFuncionario);
+    return res.json( { data: alteracaoFuncionario });
   }
 
   async delete(req: Request, res: Response) {
