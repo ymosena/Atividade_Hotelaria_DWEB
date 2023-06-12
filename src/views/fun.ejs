@@ -1,35 +1,63 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Horas Trabalhadas</th>
-      <th>Turno de Trabalho</th>
-      <th>Categoria</th>
-      <th>Ação</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% data.forEach(funcionario => { %>
-    <tr>
-      <td><%= funcionario.id %></td>
-      <td><%= funcionario.nomeFuncionario %></td>
-      <td><%= funcionario.horasTrabalhadas %></td>
-      <td><%= funcionario.turnoTrabalho %></td>
-      <td><%= funcionario.categoria %></td>
-      <td>
-        <form action="/funcionario/<%= funcionario.id %>" method="DELETE">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="Excluir">
-        </form>
-      </td>
-      <td>
-        <form action="/funcionario/porId/<%= funcionario.id %>" method="GET">
-          <input type="hidden" name="_method" value="GET">
-          <input type="submit" value="Alterar">
-        </form>
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Horas Trabalhadas</th>
+        <th>Turno de Trabalho</th>
+        <th>Categoria</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(funcionario=> { %>
+        <tr>
+          <td>
+            <%= funcionario.id %>
+          </td>
+          <td>
+            <%= funcionario.nomeFuncionario %>
+          </td>
+          <td>
+            <%= funcionario.horasTrabalhadas %>
+          </td>
+          <td>
+            <%= funcionario.turnoTrabalho %>
+          </td>
+          <td>
+            <%= funcionario.categoria %>
+          </td>
+          <td>
+            <form action="/funcionario/<%= funcionario.id %>" method="DELETE">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="submit" value="Excluir">
+            </form>
+          </td>
+          <td>
+            <form action="/funcionario/porId/<%= funcionario.id %>" method="GET">
+              <input type="hidden" name="_method" value="GET">
+              <input type="submit" value="Alterar">
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+    
+  </table>
+  <form action="/funcionario/cadastro" method="GET">
+    <input type="submit" value="Cadastrar">
+  </form>
+
+</body>
+</html>
+
