@@ -11,7 +11,7 @@ class Funcionario {
   async getPorId(req: Request, res: Response) {
     const { id } = req.params;
     const funcionario = await funcionarioServices.getPorId(parseInt(id));
-    return res.json( { data: funcionario });
+    return res.json(funcionario);
   }
 
   async getPorNome(req: Request, res: Response) {

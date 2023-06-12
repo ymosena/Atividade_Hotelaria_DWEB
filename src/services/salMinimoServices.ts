@@ -7,7 +7,7 @@ class SalMinimoServices {
   async getPorId(id: number) {
     await databases.sync();
     const salarioMinimo = await SalarioMinimo.findByPk(id);
-    return salarioMinimo;
+    return salarioMinimo?.dataValues;
   }
 
   async post(data: any) {

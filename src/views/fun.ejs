@@ -18,13 +18,15 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><%= data.id %></td>
-                <td><%= data.nomeFuncionario %></td>
-                <td><%= data.horasTrabalhadas %></td>
-                <td><%= data.turnoTrabalho %></td>
-                <td><%= data.categoria %></td>
+            <% data.forEach(funcionario => { %>
+              <tr>
+                <td><%= funcionario.id %></td>
+                <td><%= funcionario.nomeFuncionario %></td>
+                <td><%= funcionario.horasTrabalhadas %></td>
+                <td><%= funcionario.turnoTrabalho %></td>
+                <td><%= funcionario.categoria %></td>
               </tr>
+            <% }); %>
         </tbody>
       </table>      
 </body>

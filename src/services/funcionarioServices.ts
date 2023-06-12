@@ -8,13 +8,20 @@ class FuncionarioServices {
   async get() {
     await databases.sync();
     const funcionario = await Funcionario.findAll();
-    return funcionario;
+    console.log(funcionario)
+    const funcionariosDataValues = funcionario.map(funcionario => funcionario.dataValues);
+    console.log(funcionariosDataValues)
+    return funcionariosDataValues;
   }
 
   async getPorId(id: number) {
     await databases.sync();
     const funcionario = await Funcionario.findByPk(id);
-    return funcionario;
+    console.log(funcionario?.dataValues)
+    if (funcionario) {
+      //const funcionariosDataValues = funcionario.map((funcionario: { dataValues: any; }) => funcionario.dataValues);
+      return funcionario.dataValues;
+    }
   }
 
   async getPorNome(nome: string) {
@@ -26,7 +33,8 @@ class FuncionarioServices {
         },
       },
     });
-    return funcionario;
+    const funcionariosDataValues = funcionario.map(funcionario => funcionario.dataValues);
+    return funcionariosDataValues;
   }
 
   async post(data: any) {
@@ -34,7 +42,7 @@ class FuncionarioServices {
 
     const novoFuncionario = await Funcionario.create({
       nomeFuncionario: data.nomeFuncionario,
-      horasTrabalhadas: data.horasTrabalhadas,
+      horasTrabalhadas: parseInt(data.horasTrabalhadas),
       turnoTrabalho: data.turnoTrabalho,
       categoria: data.categoria,
     });

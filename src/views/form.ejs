@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Cadastro de Funcionários</title>
 </head>
+
 <body>
   <h1>Cadastro de Funcionários</h1>
-  <form action="/cadastro" method="POST">
+  <form action="/funcionario" method="POST">
     <label for="codigo">Código:</label>
     <input type="number" name="codigo" id="codigo" required><br>
-
+    <label for="nomeFuncionario">Nome funcionario:</label>
+    <input type="text" name="nomeFuncionario" id="nomeFuncionario" required><br>
     <label for="horasTrabalhadas">Horas Trabalhadas:</label>
     <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" required><br>
 
     <label for="categoria">Categoria:</label>
-    <select name="categoria" id="categoria">
+    <select name="categoria" id="categoria" onchange="atualizarCategoria(this.value)">
       <% categorias.forEach(function(categoria) { %>
-        <option value="<%= categoria %>"><%= categoria %></option>
-      <% }) %>
+        <option value="<%= categoria %>">
+          <%= categoria %>
+        </option>
+        <% }) %>
+    </select>
+
     </select><br>
 
-    <label for="turno">Turno:</label>
-    <% if (categoria === 'gerente') { %>
-      <select name="turno" id="turno">
-        <option value="vespertino">Vespertino</option>
-        <option value="matutino">Matutino</option>
-      </select>
-    <% } else { %>
-      <select name="turno" id="turno">
-        <option value="noturno">Noturno</option>
-        <option value="vespertino">Vespertino</option>
-        <option value="matutino">Matutino</option>
-      </select>
-    <% } %><br>
+    <label for="turnoTrabalho">Turno:</label>
+    <select name="turnoTrabalho" id="turnoTrabalho">
+      <option value="vespertino">Vespertino</option>
+      <option value="matutino">Matutino</option>
+      <option value="noturno">Noturno</option>
+    </select>
 
     <input type="submit" value="Cadastrar">
   </form>
 </body>
+
 </html>
+
+<script>
+  // Obtém referências aos elementos relevantes
+  var categoriaSelect = document.getElementById("categoria");
+  var turnoSelect = document.getElementById("turnoTrabalho");
+
+  // Define a função para atualizar as opções do turno
+  function atualizarOpcoesTurno() {
+    if (categoriaSelect.value === "gerente") {
+      // Categoria é "gerente", mostra apenas as opções "Vespertino" e "Matutino"
+      turnoSelect.innerHTML = `
+        <option value="vespertino">Vespertino</option>
+        <option value="matutino">Matutino</option>
+      `;
+    } else {
+      // Outras categorias, mostra todas as opções
+      turnoSelect.innerHTML = `
+        <option value="noturno">Noturno</option>
+        <option value="vespertino">Vespertino</option>
+        <option value="matutino">Matutino</option>
+      `;
+    }
+  }
+
+  // Adiciona um evento de mudança ao seletor de categoria para chamar a função de atualização
+  categoriaSelect.addEventListener("change", atualizarOpcoesTurno);
+
+  // Chama a função inicialmente para exibir as opções corretas com base na categoria selecionada
+  atualizarOpcoesTurno();
+</script>
