@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cadastro de Funcionários</title>
+</head>
+
+<body>
+  <h1>Cadastro de Funcionários</h1>
+  <form action="/funcionario/alterar/<%= data.id %>" method="post">
+    <label for="nomeFuncionario">Nome funcionario:</label>
+    <input type="text" name="nomeFuncionario" id="nomeFuncionario" value="<%= data.nomeFuncionario %>" required><br>
+    <label for="horasTrabalhadas">Horas Trabalhadas:</label>
+    <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" value="<%= data.horasTrabalhadas %>" required><br>
+
+    <label for="categoria">Categoria:</label>
+    <select name="categoria" id="categoria" onchange="atualizarOpcoesTurno()">
+      <% categorias.forEach(function(categoria) { %>
+        <option value="<%= categoria %>" <% if (data.categoria === categoria) { %>selected<% } %>>
+          <%= categoria %>
+        </option>
+      <% }) %>
+    </select><br>
+
+    <label for="turnoTrabalho">Turno:</label>
+    <select name="turnoTrabalho" id="turnoTrabalho">
+      <% turnos.forEach(function(turno) { %>
+        <option value="<%= turno %>" <% if (data.turnoTrabalho === turno) { %>selected<% } %>>
+          <%= turno %>
+        </option>
+      <% }) %>
+    </select><br>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+
+  <script>
+    // Obtém referências aos elementos relevantes
+    var categoriaSelect = document.getElementById("categoria");
+    var turnoSelect = document.getElementById("turnoTrabalho");
+
+    // Define a função para atualizar as opções do turno
+    function atualizarOpcoesTurno() {
+      if (categoriaSelect.value === "gerente") {
+        // Categoria é "gerente", mostra apenas as opções "Vespertino" e "Matutino"
+        turnoSelect.innerHTML = `
+          <option value="vespertino">Vespertino</option>
+          <option value="matutino">Matutino</option>
+        `;
+      } else {
+        // Outras categorias, mostra todas as opções
+        turnoSelect.innerHTML = `
+          <option value="noturno">Noturno</option>
+          <option value="vespertino">Vespertino</option>
+          <option value="matutino">Matutino</option>
+        `;
+      }
+    }
+
+    // Chama a função inicialmente para exibir as opções corretas com base na categoria selecionada
+    atualizarOpcoesTurno();
+  </script>
+</body>
+
+</html>
