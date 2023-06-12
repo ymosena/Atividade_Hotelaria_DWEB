@@ -8,5 +8,7 @@ router.get("/porNome/:nome", controlletfuncionario.getPorNome);
 router.post("/", controlletfuncionario.post);
 router.put("/:id", controlletfuncionario.put);
 router.delete("/:id", controlletfuncionario.delete);
+router.get("/fun", controlletfuncionario.renderTabela);
+router.get("/form", controlletfuncionario.renderCadastroForm);
 
 export default router;

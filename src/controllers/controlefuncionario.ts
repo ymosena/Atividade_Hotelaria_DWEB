@@ -41,6 +41,17 @@ class Funcionario {
     await funcionarioServices.delete(parseInt(id));
     return res.send(204);
   }
+
+  async renderCadastroForm(req: Request, res: Response) {
+    const categorias = ['gerente', 'funcionario']; 
+    res.render("form", { categorias: categorias });
+  }
+
+  async renderTabela(req: Request, res: Response) {
+    const data = await funcionarioServices.get();
+    res.render("fun", { data: data });
+  }
+  
 }
 
 export default new Funcionario();
