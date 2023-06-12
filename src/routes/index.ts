@@ -4,11 +4,15 @@ import { default as rotasalminimo } from "./routessalminimo";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/funcionario/cadastro", (req, res) => {
   res.render("form", { categorias: ['gerente', 'funcionario'], categoria: 'gerente' });
 });
 
-router.get('/funcionario/rota', async (req, res) => {
+router.get("/", (req, res) => {
+  res.render("home");
+});
+
+router.get('/funcionario/listagem', async (req, res) => {
   try {
     const response = await fetch("http://localhost:3000/funcionario", { method: "GET" });
     const data = await response.json();
