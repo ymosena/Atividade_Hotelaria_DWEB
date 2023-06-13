@@ -49,8 +49,8 @@
   <h1 class="hotel-title">Hotel Legal</h1>
   <div class="card">
     <div class="input">
-        <form action="/salMinimo/alterar/:id""" method="POST">
-            <input type="text" name="salario" placeholder="Digite o valor do salário mínimo">
+        <form action="/salMinimo/alterar/" method="POST">
+            <input type="text" name="salario" placeholder="Digite o valor do salário mínimo" value="<%= data.salarioMinimo %>">
             <div class="btn">
               <button type="submit" id="botao">Enviar</button>
             </div>

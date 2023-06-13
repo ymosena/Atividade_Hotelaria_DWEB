@@ -2,10 +2,14 @@ import { Request, Response } from "express";
 import salMinimoServices from "../services/salMinimoServices";
 
 class SalMinimo {
-  get(req: Request, res: Response) {
-    const { id } = req.params;
-    const salarioMinimo = salMinimoServices.getPorId(parseInt(id));
-    return res.render('salario', { data: salarioMinimo });
+  async get(req: Request, res: Response) {
+    const salarioMinimo = await salMinimoServices.getPorId();
+    if (salarioMinimo) {
+      return res.render('salario', { data: salarioMinimo });
+
+    } else {
+      return res.render('salario', { data: { salarioMinimo: 0 } });
+    }
   }
 
   post(req: Request, res: Response) {
@@ -15,9 +19,9 @@ class SalMinimo {
     return res.render('salario',{ data: salarioMinimo });
   }
 
-  put(req: Request, res: Response) {
+ async put(req: Request, res: Response) {
     const data = req.body;
-    const salarioMinimo = salMinimoServices.put(data);
+    const salarioMinimo = await salMinimoServices.put(parseFloat(data.salario));
     return res.render('salario',{ data: salarioMinimo });
   }
 }

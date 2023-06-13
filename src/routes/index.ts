@@ -26,9 +26,6 @@ router.get('/funcionario/listagem', async (req, res) => {
   }
 });
 
-router.get('/salario-inicial', (req, res) => {
-  res.render('salario');
-});
 
 router.use("/funcionario", rotafuncioario);
 router.use("/salMinimo", rotasalminimo);

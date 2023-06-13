@@ -4,10 +4,10 @@ import SalarioMinimo from "../models/salarioMinimo";
 const databases = database;
 
 class SalMinimoServices {
-  async getPorId(id: number) {
+  async getPorId() {
     await databases.sync();
-    const salarioMinimo = await SalarioMinimo.findByPk(id);
-    return salarioMinimo?.dataValues;
+    const salarioMinimo = await SalarioMinimo.findByPk(1);
+    return salarioMinimo;
   }
 
   async post(data: any) {
@@ -18,15 +18,22 @@ class SalMinimoServices {
     return salarioMinimo;
   }
 
-  async put(salarioMinimo: number) {
+  async put(salarioMinimoParametro: number) {
     await databases.sync();
-    const salarioMinimoT = await this.getPorId(1);
+  
+    const salarioMinimoT = await this.getPorId(); // Não é necessário passar o ID como parâmetro
     if (salarioMinimoT) {
-      salarioMinimoT.salarioMinimo = salarioMinimo;
-      salarioMinimoT.save();
-      return salarioMinimoT;
+      salarioMinimoT.salarioMinimo = salarioMinimoParametro;
+      const salarioMinimoAtualizado = await salarioMinimoT.save();
+      return salarioMinimoAtualizado;
+    } else {
+      const salarioMinimoCriado = await SalarioMinimo.create({
+        salarioMinimo: salarioMinimoParametro,
+      });
+      return salarioMinimoCriado;
     }
   }
+  
 }
 
 export default new SalMinimoServices();
