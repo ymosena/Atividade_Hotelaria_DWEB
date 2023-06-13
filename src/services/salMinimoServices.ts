@@ -20,7 +20,7 @@ class SalMinimoServices {
 
   async put(salarioMinimoParametro: number) {
     await databases.sync();
-  
+
     const salarioMinimoT = await this.getPorId(); // Não é necessário passar o ID como parâmetro
     if (salarioMinimoT) {
       salarioMinimoT.salarioMinimo = salarioMinimoParametro;
@@ -33,7 +33,6 @@ class SalMinimoServices {
       return salarioMinimoCriado;
     }
   }
-  
 }
 
 export default new SalMinimoServices();

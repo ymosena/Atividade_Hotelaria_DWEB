@@ -11,7 +11,11 @@ class Funcionario {
   async getPorId(req: Request, res: Response) {
     const { id } = req.params;
     const funcionario = await funcionarioServices.getPorId(parseInt(id));
-    return res.render('alterarFuncionario', { data: funcionario, categorias: ['gerente', 'funcionario'], turnos: ['noturno', 'vespertino', 'matutino'] });
+    return res.render("alterarFuncionario", {
+      data: funcionario,
+      categorias: ["gerente", "funcionario"],
+      turnos: ["noturno", "vespertino", "matutino"],
+    });
   }
 
   async getPorNome(req: Request, res: Response) {
@@ -23,30 +27,27 @@ class Funcionario {
   async post(req: Request, res: Response) {
     const data = req.body;
     await funcionarioServices.post(data);
-    const funcionarios = await funcionarioServices.get()
-    return res.render('fun', { data: funcionarios });
+    const funcionarios = await funcionarioServices.get();
+    return res.render("fun", { data: funcionarios });
   }
 
   async put(req: Request, res: Response) {
     const { id } = req.params;
     const data = req.body;
-    await funcionarioServices.put(
-      data,
-      parseInt(id)
-    );
-    const funcionarios = await funcionarioServices.get()
-    return res.render('fun', { data: funcionarios });
+    await funcionarioServices.put(data, parseInt(id));
+    const funcionarios = await funcionarioServices.get();
+    return res.render("fun", { data: funcionarios });
   }
 
   async delete(req: Request, res: Response) {
     const { id } = req.params;
     await funcionarioServices.delete(parseInt(id));
-    const funcionarios = await funcionarioServices.get()
-    return res.render('fun', { data: funcionarios });
+    const funcionarios = await funcionarioServices.get();
+    return res.render("fun", { data: funcionarios });
   }
 
   async renderCadastroForm(req: Request, res: Response) {
-    const categorias = ['gerente', 'funcionario'];
+    const categorias = ["gerente", "funcionario"];
     res.render("form", { categorias: categorias });
   }
 
@@ -54,7 +55,6 @@ class Funcionario {
     const data = await funcionarioServices.get();
     res.render("fun", { data: data });
   }
-
 }
 
 export default new Funcionario();
