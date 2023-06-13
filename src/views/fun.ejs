@@ -7,57 +7,96 @@
   <title>Document</title>
 </head>
 <body>
+  <style>
+    body {
+      background-color: #FBAB7E;
+      background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  
+    .card {
+      background-color: whitesmoke;
+      padding: 20px;
+      width: 80vw;
+      height:50vh;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .hotel-title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: white;
+      font-weight: bold;
+    }
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Horas Trabalhadas</th>
-        <th>Turno de Trabalho</th>
-        <th>Categoria</th>
-        <th>Ação</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% data.forEach(funcionario=> { %>
+    #botao{
+      padding: 1vw;
+      background-color:#FBAB7E;
+      border-radius: 1vw;
+    }
+  </style>
+  <div class="card">
+    <table>
+      <thead>
         <tr>
-          <td>
-            <%= funcionario.id %>
-          </td>
-          <td>
-            <%= funcionario.nomeFuncionario %>
-          </td>
-          <td>
-            <%= funcionario.horasTrabalhadas %>
-          </td>
-          <td>
-            <%= funcionario.turnoTrabalho %>
-          </td>
-          <td>
-            <%= funcionario.categoria %>
-          </td>
-          <td>
-            <form action="/funcionario/<%= funcionario.id %>" method="DELETE">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="submit" value="Excluir">
-            </form>
-          </td>
-          <td>
-            <form action="/funcionario/porId/<%= funcionario.id %>" method="GET">
-              <input type="hidden" name="_method" value="GET">
-              <input type="submit" value="Alterar">
-            </form>
-          </td>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Horas Trabalhadas</th>
+          <th>Turno de Trabalho</th>
+          <th>Categoria</th>
+          <th>Ação</th>
         </tr>
-        <% }); %>
-    </tbody>
-    
-  </table>
-  <form action="/funcionario/cadastro" method="GET">
-    <input type="submit" value="Cadastrar">
-  </form>
-
+      </thead>
+      <tbody>
+        <% data.forEach(funcionario=> { %>
+          <tr>
+            <td>
+              <%= funcionario.id %>
+            </td>
+            <td>
+              <%= funcionario.nomeFuncionario %>
+            </td>
+            <td>
+              <%= funcionario.horasTrabalhadas %>
+            </td>
+            <td>
+              <%= funcionario.turnoTrabalho %>
+            </td>
+            <td>
+              <%= funcionario.categoria %>
+            </td>
+            <td>
+              <form action="/funcionario/deletar/<%= funcionario.id %>" method="DELETE">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="Excluir">
+              </form>
+            </td>
+            <td>
+              <form action="/funcionario/porId/<%= funcionario.id %>" method="GET">
+                <input type="hidden" name="_method" value="GET">
+                <input type="submit" value="Alterar">
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+      
+    </table>
+    <div class="botao">
+      <form action="/funcionario/cadastro" method="GET">
+        <input type="submit" value="Cadastrar" id="botao">
+      </form>
+    </div>
+  </div>
 </body>
 </html>
 

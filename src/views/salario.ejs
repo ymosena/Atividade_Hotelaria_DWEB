@@ -20,13 +20,20 @@
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       text-align: center;
-      display: flex;
+      display: grid;
       justify-content: center;
       align-items: center;
     }
 
     .input{
         color: white;
+    }
+
+
+    #botao{
+      padding: 0.5vw;
+      background-color:#FBAB7E;
+      border-radius: 1vw;
     }
 
     .hotel-title {
@@ -42,9 +49,11 @@
   <h1 class="hotel-title">Hotel Legal</h1>
   <div class="card">
     <div class="input">
-        <form action="/salario" method="POST">
+        <form action="/salMinimo/alterar/:id""" method="POST">
             <input type="text" name="salario" placeholder="Digite o valor do salário mínimo">
-            <button type="submit">Enviar</button>
+            <div class="btn">
+              <button type="submit" id="botao">Enviar</button>
+            </div>
         </form>
     </div>
   </div>

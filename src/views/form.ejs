@@ -4,36 +4,74 @@
 <head>
   <title>Cadastro de Funcionários</title>
 </head>
+<style>
+  body {
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
+  .card {
+    background-color: whitesmoke;
+    padding: 20px;
+    width: 80vw;
+    height:50vh;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form{
+    display: grid;
+  }
+
+  .hotel-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-weight: bold;
+  }
+</style>
 <body>
-  <h1>Cadastro de Funcionários</h1>
-  <form action="/funcionario" method="POST">
-    <label for="nomeFuncionario">Nome funcionario:</label>
-    <input type="text" name="nomeFuncionario" id="nomeFuncionario" required><br>
-    <label for="horasTrabalhadas">Horas Trabalhadas:</label>
-    <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" required><br>
-
-    <label for="categoria">Categoria:</label>
-    <select name="categoria" id="categoria" onchange="atualizarCategoria(this.value)">
-      <% categorias.forEach(function(categoria) { %>
-        <option value="<%= categoria %>">
-          <%= categoria %>
-        </option>
-        <% }) %>
-    </select>
-
-    </select><br>
-
-
-    <label for="turnoTrabalho">Turno:</label>
-    <select name="turnoTrabalho" id="turnoTrabalho">
-      <option value="vespertino">Vespertino</option>
-      <option value="matutino">Matutino</option>
-      <option value="noturno">Noturno</option>
-    </select>
-
-    <input type="submit" value="Cadastrar">
-  </form>
+  <div class="card">
+    <div class="form">
+      <h1>Cadastro de Funcionários</h1>
+    <form action="/funcionario" method="POST">
+      <label for="nomeFuncionario">Nome funcionario:</label>
+      <input type="text" name="nomeFuncionario" id="nomeFuncionario" required><br>
+      <label for="horasTrabalhadas">Horas Trabalhadas:</label>
+      <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" required><br>
+  
+      <label for="categoria">Categoria:</label>
+      <select name="categoria" id="categoria" onchange="atualizarCategoria(this.value)">
+        <% categorias.forEach(function(categoria) { %>
+          <option value="<%= categoria %>">
+            <%= categoria %>
+          </option>
+          <% }) %>
+      </select>
+  
+      </select><br>
+  
+  
+      <label for="turnoTrabalho">Turno:</label>
+      <select name="turnoTrabalho" id="turnoTrabalho">
+        <option value="vespertino">Vespertino</option>
+        <option value="matutino">Matutino</option>
+        <option value="noturno">Noturno</option>
+      </select>
+  
+      <input type="submit" value="Cadastrar">
+    </form>
+    </div>
+  </div>
 </body>
 
 </html>

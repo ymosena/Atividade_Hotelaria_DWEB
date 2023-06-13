@@ -4,36 +4,74 @@
 <head>
   <title>Cadastro de Funcionários</title>
 </head>
+<style>
+  body {
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
+  .card {
+    background-color: whitesmoke;
+    padding: 20px;
+    width: 80vw;
+    height:50vh;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hotel-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-weight: bold;
+  }
+
+  #botao{
+    padding: 1vw;
+    background-color:#FBAB7E;
+    border-radius: 1vw;
+  }
+  </style>
 <body>
-  <h1>Cadastro de Funcionários</h1>
-  <form action="/funcionario/alterar/<%= data.id %>" method="post">
-    <label for="nomeFuncionario">Nome funcionario:</label>
-    <input type="text" name="nomeFuncionario" id="nomeFuncionario" value="<%= data.nomeFuncionario %>" required><br>
-    <label for="horasTrabalhadas">Horas Trabalhadas:</label>
-    <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" value="<%= data.horasTrabalhadas %>" required><br>
-
-    <label for="categoria">Categoria:</label>
-    <select name="categoria" id="categoria" onchange="atualizarOpcoesTurno()">
-      <% categorias.forEach(function(categoria) { %>
-        <option value="<%= categoria %>" <% if (data.categoria === categoria) { %>selected<% } %>>
-          <%= categoria %>
-        </option>
-      <% }) %>
-    </select><br>
-
-    <label for="turnoTrabalho">Turno:</label>
-    <select name="turnoTrabalho" id="turnoTrabalho">
-      <% turnos.forEach(function(turno) { %>
-        <option value="<%= turno %>" <% if (data.turnoTrabalho === turno) { %>selected<% } %>>
-          <%= turno %>
-        </option>
-      <% }) %>
-    </select><br>
-
-    <input type="submit" value="Cadastrar">
-  </form>
-
+  <div class="card">
+    <form action="/funcionario/alterar/<%= data.id %>" method="post">
+      <label for="nomeFuncionario">Nome funcionario:</label>
+      <input type="text" name="nomeFuncionario" id="nomeFuncionario" value="<%= data.nomeFuncionario %>" required><br>
+      <label for="horasTrabalhadas">Horas Trabalhadas:</label>
+      <input type="number" name="horasTrabalhadas" id="horasTrabalhadas" value="<%= data.horasTrabalhadas %>" required><br>
+  
+      <label for="categoria">Categoria:</label>
+      <select name="categoria" id="categoria" onchange="atualizarOpcoesTurno()">
+        <% categorias.forEach(function(categoria) { %>
+          <option value="<%= categoria %>" <% if (data.categoria === categoria) { %>selected<% } %>>
+            <%= categoria %>
+          </option>
+        <% }) %>
+      </select><br>
+  
+      <label for="turnoTrabalho">Turno:</label>
+      <select name="turnoTrabalho" id="turnoTrabalho">
+        <% turnos.forEach(function(turno) { %>
+          <option value="<%= turno %>" <% if (data.turnoTrabalho === turno) { %>selected<% } %>>
+            <%= turno %>
+          </option>
+        <% }) %>
+      </select><br>
+  
+      <input type="submit" value="Editar" id="botao">
+    </form>
+  
+  </div>
+  
   <script>
     // Obtém referências aos elementos relevantes
     var categoriaSelect = document.getElementById("categoria");
