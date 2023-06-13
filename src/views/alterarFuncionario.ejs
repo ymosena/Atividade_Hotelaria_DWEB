@@ -36,9 +36,14 @@
   }
 
   #botao{
-    padding: 1vw;
+    padding: 0.5vw;
     background-color:#FBAB7E;
-    border-radius: 1vw;
+    border-radius: 0.5vw;
+  }
+  .btn{
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
   }
   </style>
 <body>
@@ -66,10 +71,11 @@
           </option>
         <% }) %>
       </select><br>
-  
-      <input type="submit" value="Editar" id="botao">
-    </form>
-  
+      <div class="btn">
+        <input type="submit" value="Editar" id="botao">
+      </form> 
+      <a href="/">Voltar</a>
+      </div>
   </div>
   
   <script>
