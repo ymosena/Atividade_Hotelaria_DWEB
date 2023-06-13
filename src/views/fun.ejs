@@ -58,6 +58,10 @@
           <th>Horas Trabalhadas</th>
           <th>Turno de Trabalho</th>
           <th>Categoria</th>
+          <th>Salário</th>
+          <th>Alimentação</th>
+          <th>Valor/Hora</th>
+
           <th>Ação</th>
         </tr>
       </thead>
@@ -78,6 +82,15 @@
             </td>
             <td>
               <%= funcionario.categoria %>
+            </td>
+            <td>
+              <%= funcionario.salario %>
+            </td>
+            <td>
+              <%= funcionario.alimentacao %>
+            </td>
+            <td>
+              <%= funcionario.valorHora %>
             </td>
             <td>
               <form action="/funcionario/deletar/<%= funcionario.id %>" method="DELETE">

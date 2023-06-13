@@ -15,6 +15,15 @@ module.exports = {
       horasTrabalhadas: {
         type: Sequelize.INTEGER,
       },
+      valorHora: {
+        type: Sequelize.FLOAT,
+      },
+      salario: {
+        type: Sequelize.FLOAT,
+      },
+      alimentacao: {
+        type: Sequelize.FLOAT,
+      },
       turnoTrabalho: {
         type: Sequelize.STRING,
       },

@@ -7,6 +7,9 @@ class Funcionario extends Model {
   public horasTrabalhadas!: number;
   public turnoTrabalho!: string;
   public categoria!: string;
+  public valorHora!: number;
+  public salario!: number;
+  public alimentacao!: number
 }
 
 Funcionario.init(
@@ -22,6 +25,18 @@ Funcionario.init(
     },
     horasTrabalhadas: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    valorHora: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    salario: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    alimentacao: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     turnoTrabalho: {

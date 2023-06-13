@@ -1,6 +1,7 @@
 import database from "../models/db";
 import Funcionario from "../models/funcionario";
 import { Op } from "sequelize";
+import salMinimoServices from "./salMinimoServices";
 
 const databases = database;
 
@@ -43,11 +44,39 @@ class FuncionarioServices {
   async post(data: any) {
     await database.sync();
 
+    const salarioMinimo = await salMinimoServices.getPorId();
+    let valorHora = 0;
+
+    if (!salarioMinimo) {
+      return "ERRO";
+    }
+
+    if (data.categoria == "gerente") {
+      valorHora = salarioMinimo.salarioMinimo * 0.04;
+    } else if (data.turnoTrabalho == "noturno") {
+      valorHora = salarioMinimo.salarioMinimo * 0.02;
+    } else {
+      valorHora = salarioMinimo.salarioMinimo * 0.01;
+    }
+
+    const salario = parseInt(data.horasTrabalhadas) * valorHora;
+    let alimentacao;
+    if (salario <= 800) {
+      alimentacao = salario * 0.25;
+    } else if (salario <= 1200) {
+      alimentacao = salario * 0.2;
+    } else {
+      alimentacao = salario * 0.15;
+    }
+
     const novoFuncionario = await Funcionario.create({
       nomeFuncionario: data.nomeFuncionario,
       horasTrabalhadas: parseInt(data.horasTrabalhadas),
       turnoTrabalho: data.turnoTrabalho,
       categoria: data.categoria,
+      salario: salario,
+      valorHora: valorHora,
+      alimentacao: alimentacao,
     });
     return novoFuncionario;
   }
@@ -55,16 +84,45 @@ class FuncionarioServices {
   async put(data: any, id: number) {
     await database.sync();
 
+    const salarioMinimo = await salMinimoServices.getPorId();
+    let valorHora = 0;
+
+    if (!salarioMinimo) {
+      return "ERRO";
+    }
+
+    if (data.categoria == "gerente") {
+      valorHora = salarioMinimo.salarioMinimo * 0.04;
+    } else if (data.turnoTrabalho == "noturno") {
+      valorHora = salarioMinimo.salarioMinimo * 0.02;
+    } else {
+      valorHora = salarioMinimo.salarioMinimo * 0.01;
+    }
+
+    const salario = parseInt(data.horasTrabalhadas) * valorHora;
+    let alimentacao;
+    if (salario <= 800) {
+      alimentacao = salario * 0.25;
+    } else if (salario <= 1200) {
+      alimentacao = salario * 0.2;
+    } else {
+      alimentacao = salario * 0.15;
+    }
+
     const funcionario = await this.getPorId(id);
     if (funcionario) {
       funcionario.nomeFuncionario = data.nomeFuncionario;
       funcionario.horasTrabalhadas = data.horasTrabalhadas;
       funcionario.turnoTrabalho = data.turnoTrabalho;
       funcionario.categoria = data.categoria;
-
+      funcionario.valorHora = valorHora;
+      funcionario.salario = salario;
+      funcionario.alimentacao = alimentacao;
+    
       const funcionarioAlterado = await funcionario.save();
       return funcionarioAlterado;
     }
+    
   }
 
   async delete(id: number) {
