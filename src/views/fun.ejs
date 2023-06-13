@@ -43,6 +43,11 @@
       background-color:#FBAB7E;
       border-radius: 1vw;
     }
+    .btn{
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+  }
   </style>
   <div class="card">
     <table>
@@ -93,8 +98,12 @@
     </table>
     <div class="botao">
       <form action="/funcionario/cadastro" method="GET">
-        <input type="submit" value="Cadastrar" id="botao">
-      </form>
+        <div class="btn">
+          <input type="submit" value="Cadastrar" id="botao">
+        </form>
+        <a href="/">Voltar</a>
+        </div>
+
     </div>
   </div>
 </body>
